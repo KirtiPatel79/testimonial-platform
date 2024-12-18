@@ -7,7 +7,7 @@ This is a Next.js project bootstrapped with TypeScript, Tailwind CSS, and NextAu
 First, clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/testimonial-platform.git
+https://github.com/KirtiPatel79/testimonial-platform.git
 cd testimonial-platform
 ```
 
