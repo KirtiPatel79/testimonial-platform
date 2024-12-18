@@ -8,15 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "typescript": "latest",
-    "tailwindcss": "latest",
-    "next-auth": "latest",
-    "pg": "latest",
     "dotenv": "latest",
     "formik": "latest",
-    "react-hook-form": "latest"
+    "next": "latest",
+    "next-auth": "latest",
+    "pg": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-hook-form": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2"
   }
 }
