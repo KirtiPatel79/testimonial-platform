@@ -11,6 +11,26 @@ export default NextAuth({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
+    Providers.Credentials({
+      name: "Guest",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        const guestEmail = process.env.GUEST_USER_EMAIL;
+        const guestPassword = process.env.GUEST_USER_PASSWORD;
+
+        if (
+          credentials.email === guestEmail &&
+          credentials.password === guestPassword
+        ) {
+          return { id: 1, name: "Guest User", email: guestEmail };
+        } else {
+          return null;
+        }
+      },
+    }),
   ],
   callbacks: {
     async signIn(user, account, profile) {
@@ -31,7 +51,7 @@ export default NextAuth({
     },
   },
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
   events: {
     async signIn(message) {
