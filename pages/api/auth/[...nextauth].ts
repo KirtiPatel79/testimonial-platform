@@ -30,4 +30,15 @@ export default NextAuth({
       return token;
     },
   },
+  pages: {
+    signIn: '/auth/signin',
+  },
+  events: {
+    async signIn(message) {
+      if (message.isNewUser) {
+        // Handle new user sign-in
+      }
+    },
+  },
+  debug: true,
 });

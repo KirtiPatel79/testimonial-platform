@@ -35,6 +35,31 @@ const Dashboard = () => {
     fetchTestimonials();
   }, []);
 
+  const handleFormSubmit = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append('author', data.author);
+      formData.append('text', data.text);
+      if (data.video.length > 0) {
+        formData.append('video', data.video[0]);
+      }
+
+      const res = await fetch('/api/testimonials', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error('Error creating testimonial');
+      }
+
+      const newTestimonial = await res.json();
+      setTestimonials((prevTestimonials) => [newTestimonial, ...prevTestimonials]);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   if (status === 'loading' || loading) {
     return <div>Loading...</div>;
   }
@@ -52,7 +77,7 @@ const Dashboard = () => {
           <h2 className="text-2xl font-bold mb-4">Testimonials</h2>
           <TestimonialsTable testimonials={testimonials} />
           <h2 className="text-2xl font-bold mb-4">Add Testimonial</h2>
-          <TestimonialForm />
+          <TestimonialForm onSubmit={handleFormSubmit} />
         </MainArea>
       </div>
     </div>
